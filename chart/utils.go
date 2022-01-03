@@ -13,6 +13,16 @@ func findLonguest(labels []string) int {
 	return longuest
 }
 
+func findMax(values []float64) float64 {
+	var max float64
+	for _, value := range values {
+		if value > max {
+			max = value
+		}
+	}
+	return max
+}
+
 func alignLeft(s string, fill string, n int) string {
 	return s + strings.Repeat(fill, n)
 }

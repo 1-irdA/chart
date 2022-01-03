@@ -1,8 +1,11 @@
 # cli-charts
 
-Generate charts for cli app
+Generate charts for cli app.        
+Works with percentage.      
 
 ```go
+package main
+
 import (
 	"fmt"
 
@@ -10,12 +13,11 @@ import (
 )
 
 func main() {
+	label := []string{"go", "rb", "rs", "cpp", "js", "java"}
+	values := []float64{17, 13, 3.75, 16.25, 14.95, 35.05}
 
-	label := []string{"c", "go", "rb", "rs", "cpp", "js", "java"}
-	values := []float64{10, 15, 5, 10, 26, 14, 20}
-
-	barChart := chart.New("Languages", 5.0, label, values, "*")
-	result := barChart.Generate()
+	barChart := chart.New("Languages", 5.0, label, values, "=")
+	result := barChart.Generate(chart.Horizontal)
 
 	fmt.Println(result)
 }
