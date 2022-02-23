@@ -1,4 +1,4 @@
-# cli-charts
+# chart
 
 Generate barchart for cli app.        
 Works with percentage.      
