@@ -1,8 +1,8 @@
 package chart
 
 // type chart for struct who implement theses methods
-type Chart interface {
-	New(title string, ticks float64, labels []string, values []string, fill string) *Chart
+type chart interface {
+	New(title string, ticks float64, labels []string, values []string, fill string) *chart
 	Generate(chartType int) string
 }
 
@@ -12,7 +12,7 @@ type Chart interface {
 // labels
 // values
 // char to fill bar
-type BarChart struct {
+type barChart struct {
 	title  string
 	ticks  float64
 	labels []string
