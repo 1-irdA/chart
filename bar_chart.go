@@ -10,14 +10,16 @@ const (
 	Horizontal = 2
 )
 
+// Create a barchart instance
 func New(title string, ticks float64, labels []string, values []float64, fill string) *BarChart {
 	if len(labels) != len(values) {
-		fmt.Println(fmt.Sprintf("Needs same number of values : %d, labels : %d", len(values), len(labels)))
+		fmt.Printf("%s", fmt.Sprintf("Needs same number of values : %d, labels : %d", len(values), len(labels)))
 		os.Exit(1)
 	}
 	return &BarChart{title: title, ticks: ticks, labels: labels, values: values, fill: fill}
 }
 
+// Generate cli barchart
 func (b BarChart) Generate(chartType int) string {
 	if chartType == 1 {
 		return b.generateVertically()
@@ -25,6 +27,7 @@ func (b BarChart) Generate(chartType int) string {
 	return b.generateHorizontally()
 }
 
+// Generate vertical barchart
 func (b BarChart) generateVertically() string {
 	var title string = center(b.title, " ", len(b.labels)*2) + "\n"
 	var chart string
@@ -66,6 +69,7 @@ func (b BarChart) generateVertically() string {
 	return title + chart
 }
 
+// Generate horizontal barchart
 func (b BarChart) generateHorizontally() string {
 	var title string = center(b.title, " ", len(b.labels)*2) + "\n\n"
 	var longuestName int = findLonguest(b.labels)

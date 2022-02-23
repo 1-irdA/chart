@@ -1,6 +1,6 @@
 # cli-charts
 
-Generate charts for cli app.        
+Generate barchart for cli app.        
 Works with percentage.      
 
 ```go
@@ -9,7 +9,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/1-irdA/cli-charts/chart"
+	"github.com/1-irdA/chart"
 )
 
 func main() {
