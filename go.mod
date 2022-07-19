@@ -1,3 +1,3 @@
-module github.com/1-irdA/chart
+module github.com/garrou/chart
 
 go 1.17

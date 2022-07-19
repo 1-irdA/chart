@@ -9,7 +9,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/1-irdA/chart"
+	"github.com/garrou/chart"
 )
 
 func main() {
