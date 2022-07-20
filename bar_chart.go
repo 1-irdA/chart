@@ -80,15 +80,15 @@ func (b barChart) generateHorizontally() string {
 
 	for i := 0; i < len(b.labels); i++ {
 		row := ""
-		chart += ajustRight(fmt.Sprintf("%s| ", b.labels[i]), " ", longestName+2)
+		chart += ajustLeft(fmt.Sprintf("%s", b.labels[i]), " ", longestName) + " | "
 
 		for j := 100.0; j > 0.0; j -= b.ticks {
 
 			if b.values[i] >= j {
-				row += alignLeft(b.fill, " ", 2)
+				row += b.fill
 			}
 		}
-		chart += ajustLeft(row, " ", longestName+2+int(max/b.ticks)*3) + fmt.Sprintf("%.2f", b.values[i]) + " %\n"
+		chart += ajustLeft(row, " ", longestName+2+int(max/b.ticks)) + fmt.Sprintf("%.2f", b.values[i]) + " %\n"
 	}
 	return title + chart
 }

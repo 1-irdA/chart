@@ -7,7 +7,7 @@ func TestCenter(t *testing.T) {
 	want := "    Test    "
 
 	if got != want {
-		t.Errorf("got %q, wanted %q", got, want)
+		t.Errorf("got %q, want %q", got, want)
 	}
 }
 
@@ -16,7 +16,7 @@ func TestAlignLeft(t *testing.T) {
 	want := "Test----"
 
 	if got != want {
-		t.Errorf("got %q, wanted %q", got, want)
+		t.Errorf("got %q, want %q", got, want)
 	}
 }
 
@@ -25,7 +25,7 @@ func TestAlignRight(t *testing.T) {
 	want := "****Test"
 
 	if got != want {
-		t.Errorf("got %q, wanted %q", got, want)
+		t.Errorf("got %q, want %q", got, want)
 	}
 }
 
@@ -34,7 +34,7 @@ func TestAjustLeft(t *testing.T) {
 	want := "Test------"
 
 	if got != want {
-		t.Errorf("got %q, wanted %q", got, want)
+		t.Errorf("got %q, want %q", got, want)
 	}
 }
 
@@ -43,7 +43,7 @@ func TestAjustLeftSmaller(t *testing.T) {
 	want := "Test"
 
 	if got != want {
-		t.Errorf("got %q, wanted %q", got, want)
+		t.Errorf("got %q, want %q", got, want)
 	}
 }
 
@@ -52,7 +52,7 @@ func TestAjustRight(t *testing.T) {
 	want := "//////Test"
 
 	if got != want {
-		t.Errorf("got %q, wanted %q", got, want)
+		t.Errorf("got %q, want %q", got, want)
 	}
 }
 
@@ -61,7 +61,7 @@ func TestAjustRightSmaller(t *testing.T) {
 	want := "Test"
 
 	if got != want {
-		t.Errorf("got %q, wanted %q", got, want)
+		t.Errorf("got %q, want %q", got, want)
 	}
 }
 
@@ -70,7 +70,7 @@ func TestFindLonguest(t *testing.T) {
 	want := 4
 
 	if got != want {
-		t.Errorf("got %q, wanted %q", got, want)
+		t.Errorf("got %q, want %q", got, want)
 	}
 }
 
@@ -79,6 +79,6 @@ func TestFindMax(t *testing.T) {
 	want := 1875.48
 
 	if got != want {
-		t.Errorf("got %f, wanted %f", got, want)
+		t.Errorf("got %f, want %f", got, want)
 	}
 }
