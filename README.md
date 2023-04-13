@@ -1,6 +1,6 @@
 # chart
 
-Generate barchart for cli app.        
+Generate barchart for cli app with no dependence.        
 Works with percentage.      
 
 ```go

@@ -25,7 +25,7 @@ func New(title string, ticks float64, labels []string, values []float64, fill st
 
 // Generate generate horizontal or vertical cli barchart
 func (b barChart) Generate(chartType int) string {
-	if chartType == 1 {
+	if chartType == Vertical {
 		return b.generateVertically()
 	}
 	return b.generateHorizontally()

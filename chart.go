@@ -2,10 +2,10 @@ package chart
 
 // barchart is just a barchart with
 // a title to describe it
-//  a tick unit (ex: 0.5)
-// labels
+// a tick unit (ex: 0.5)
+// labels to describe values
 // values
-// char to fill bar
+// fill bar with custom char
 type barChart struct {
 	title  string
 	ticks  float64
