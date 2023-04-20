@@ -39,8 +39,6 @@ lua    | ===================        99.99
 
 ```
 
-## Vertical barchart
-
 ```text
                 Languages
 100.00|
