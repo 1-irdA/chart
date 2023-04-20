@@ -2,7 +2,7 @@ package chart
 
 import "strings"
 
-// find longuest labels to make a good indendation
+// findLonguest find longuest labels to make a good indendation
 func findLonguest(labels []string) int {
 	var longuest int
 	for _, label := range labels {
@@ -14,7 +14,7 @@ func findLonguest(labels []string) int {
 	return longuest
 }
 
-// find the biggest number
+// findMax find the biggest number
 func findMax(values []float64) float64 {
 	var max float64
 	for _, value := range values {
@@ -25,28 +25,28 @@ func findMax(values []float64) float64 {
 	return max
 }
 
-// align left string s with fill string repeat n times
+// alignLeft align left string s with fill string repeat n times
 // ex: "Test", "-", 4
 // output: Test----
 func alignLeft(s string, fill string, n int) string {
 	return s + strings.Repeat(fill, n)
 }
 
-// align left string s with fill string repeat n times
+// alignRight align right string s with fill string repeat n times
 // ex: "Test", "-", 4
 // output: ----Test
 func alignRight(s string, fill string, n int) string {
 	return strings.Repeat(fill, n) + s
 }
 
-// center string s with fill string repeat n times
+// center center string s with fill string repeat n times
 // ex: "Test", "-", 4
 // output: ----Test----
 func center(s string, fill string, n int) string {
 	return strings.Repeat(fill, n) + s + strings.Repeat(fill, n)
 }
 
-// ajust left string s with fill string repeat n times
+// ajustLeft ajust left string s with fill string repeat n times
 // ex: "Test", "-", 10
 // output: Test------
 func ajustLeft(s string, fill string, n int) string {
@@ -58,7 +58,7 @@ func ajustLeft(s string, fill string, n int) string {
 	return s
 }
 
-// ajust right string s with fill string repeat n times
+// ajustRight ajust right string s with fill string repeat n times
 // ex: "Test", "-", 10
 // output: ------Test
 func ajustRight(s string, fill string, n int) string {
@@ -68,4 +68,24 @@ func ajustRight(s string, fill string, n int) string {
 		return alignRight(s, fill, n-sLen)
 	}
 	return s
+}
+
+// duplicateHorizontal duplicate string s horizontaly n times
+// ex: "Test", 3
+// output: Test\nTest\nTest\n
+func duplicateHorizontal(s string, n int) string {
+	if n == 0 {
+		return s
+	}
+	return s + "\n" + duplicateHorizontal(s, n-1)
+}
+
+// sum return the sum of the array
+func sum(arr []float64) float64 {
+	var sum float64
+
+	for _, v := range arr {
+		sum += v
+	}
+	return sum
 }

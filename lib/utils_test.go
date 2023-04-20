@@ -82,3 +82,30 @@ func TestFindMax(t *testing.T) {
 		t.Errorf("got %f, want %f", got, want)
 	}
 }
+
+func TestSum(t *testing.T) {
+	got := sum([]float64{25.0, 10.0, 2.0, 30.5, 0.5})
+	want := 68.0
+
+	if got != want {
+		t.Errorf("got %f, want %f", got, want)
+	}
+}
+
+func TestSumEmpty(t *testing.T) {
+	got := sum([]float64{})
+	want := .0
+
+	if got != want {
+		t.Errorf("got %f, want %f", got, want)
+	}
+}
+
+func TestDuplicateHorizontal(t *testing.T) {
+	got := duplicateHorizontal("test-test", 2)
+	want := "test-test\ntest-test\ntest-test"
+
+	if got != want {
+		t.Errorf("got %s, want %s", got, want)
+	}
+}

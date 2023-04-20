@@ -1,7 +1,8 @@
 # chart
 
-Generate barchart for cli app with no dependence.        
-Works with percentage.      
+Generate barchart for cli app with no dependence.       
+
+## Barchart
 
 ```go
 package main
@@ -13,33 +14,32 @@ import (
 )
 
 func main() {
-	label := []string{"go", "rb", "rs", "cpp", "js", "java", "carbon", "lua"}
-	values := []float64{17, 13, 3.75, 16.25, 14.95, 35.05, 54.65, 99.99}
+	label := []string{"go", "cpp", "js", "java"}
+	values := []float64{17, 14.95, 35.05, 54.65}
+	colors := []chart.AnsiColor{chart.Yellow, chart.Red, chart.Green, chart.Blue}
 
-	barChart := chart.New("Languages", 5, label, values, "=")
+	barChart := chart.NewBarChart("Languages", 5, label, values, colors, "=")
 	result := barChart.Generate(chart.Horizontal)
 
 	fmt.Println(result)
 }
 ```
 
-## Horizontal
-
 ```text
                 Languages
 
-go     | ===                        17.00 %
-rb     | ==                         13.00 %
-rs     |                            3.75 %
-cpp    | ===                        16.25 %
-js     | ==                         14.95 %
-java   | =======                    35.05 %
-carbon | ==========                 54.65 %
-lua    | ===================        99.99 %
+go     | ===                        17.00
+rb     | ==                         13.00
+rs     |                            3.75
+cpp    | ===                        16.25
+js     | ==                         14.95
+java   | =======                    35.05
+carbon | ==========                 54.65
+lua    | ===================        99.99
 
 ```
 
-## Vertical
+## Vertical barchart
 
 ```text
                 Languages
@@ -70,4 +70,28 @@ lua    | ===================        99.99 %
                        a  b
                           o
                           n
+```
+
+## Stackchart
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/garrou/chart"
+)
+
+func main() {
+	label := []string{"go", "cpp", "js", "java"}
+	values := []float64{17, 13, 16.25, 54.65}
+	fills := []string{"*", "+", "=", "-"}
+	colors := []chart.AnsiColor{chart.Yellow, chart.Red, chart.Green, chart.Blue}
+
+	stackChart := chart.NewStackChart("Languages", 2, label, values, fills, colors)
+	result := stackChart.Generate(chart.Horizontal)
+
+	fmt.Println(result)
+}
 ```
