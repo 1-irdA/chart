@@ -20,9 +20,6 @@ func NewStackChart(title string, ticks float64, labels []string, values []float6
 
 // Generate generate horizontal or vertical cli barchart
 func (s stackChart) Generate(chartType int) string {
-	if chartType == Vertical {
-		return s.generateVertically()
-	}
 	return s.generateHorizontally()
 }
 

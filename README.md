@@ -1,6 +1,6 @@
 # chart
 
-Generate barchart for cli app with no dependence.       
+Generate barchart for cli app with no dependency and colors.       
 
 ## Barchart
 
@@ -94,4 +94,14 @@ func main() {
 
 	fmt.Println(result)
 }
+```
+
+```text
+        Languages
+
+********++++++========---------------------------
+********++++++========---------------------------
+********++++++========---------------------------
+
+* go : 17.0   + cpp : 13.0   = js : 16.2   - java : 54.6
 ```
