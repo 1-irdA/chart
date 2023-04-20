@@ -7,12 +7,24 @@ import (
 )
 
 // NewBarChart Create a barchart instance
-func NewBarChart(title string, ticks float64, labels []string, values []float64, colors []AnsiColor, fill string) Chart {
+func NewBarChart(title string, ticks float64, labels []string, values []float64, fill string) Chart {
 	lenLabels := len(labels)
 	lenValues := len(values)
 
 	if lenLabels != lenValues {
 		log.Fatalf("Needs same number of values : %d, labels : %d", lenValues, lenLabels)
+	}
+	return &barChart{title: title, ticks: ticks, labels: labels, values: values, fill: fill, colors: make([]AnsiColor, lenLabels)}
+}
+
+// NewColoredBarChart Create a barchart instance
+func NewColoredBarChart(title string, ticks float64, labels []string, values []float64, colors []AnsiColor, fill string) Chart {
+	lenLabels := len(labels)
+	lenValues := len(values)
+	lenColors := len(colors)
+
+	if lenLabels != lenValues || lenLabels != lenColors {
+		log.Fatalf("Needs same number of values : %d, labels : %d, colors : %d", lenValues, lenLabels, lenColors)
 	}
 	return &barChart{title: title, ticks: ticks, labels: labels, values: values, fill: fill, colors: colors}
 }

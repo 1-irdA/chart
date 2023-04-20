@@ -2,7 +2,7 @@
 
 Generate barchart for cli app with no dependency and colors.       
 
-## Barchart
+## Bar chart
 
 ```go
 package main
@@ -18,7 +18,7 @@ func main() {
 	values := []float64{17, 14.95, 35.05, 54.65}
 	colors := []chart.AnsiColor{chart.Yellow, chart.Red, chart.Green, chart.Blue}
 
-	barChart := chart.NewBarChart("Languages", 5, label, values, colors, "=")
+	barChart := chart.NewColoredBarChart("Languages", 5, label, values, colors, "=")
 	result := barChart.Generate(chart.Horizontal)
 
 	fmt.Println(result)
@@ -70,7 +70,7 @@ lua    | ===================        99.99
                           n
 ```
 
-## Stackchart
+## Stack chart
 
 ```go
 package main
@@ -87,7 +87,7 @@ func main() {
 	fills := []string{"*", "+", "=", "-"}
 	colors := []chart.AnsiColor{chart.Yellow, chart.Red, chart.Green, chart.Blue}
 
-	stackChart := chart.NewStackChart("Languages", 2, label, values, fills, colors)
+	stackChart := chart.NewColoredStackChart("Languages", 2, label, values, fills, colors)
 	result := stackChart.Generate(chart.Horizontal)
 
 	fmt.Println(result)

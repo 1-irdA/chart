@@ -7,13 +7,26 @@ import (
 )
 
 // NewStackChart Create a barchart instance
-func NewStackChart(title string, ticks float64, labels []string, values []float64, fills []string, colors []AnsiColor) Chart {
+func NewStackChart(title string, ticks float64, labels []string, values []float64, fills []string) Chart {
 	lenLabels := len(labels)
 	lenValues := len(values)
 	lenFills := len(fills)
 
 	if lenLabels != lenValues || lenLabels != lenFills {
 		log.Fatalf("Needs same number of values : %d, labels : %d, fills : %d", lenValues, lenLabels, lenFills)
+	}
+	return &stackChart{title: title, ticks: ticks, labels: labels, values: values, fills: fills, colors: make([]AnsiColor, lenFills)}
+}
+
+// NewColoredStackChart Create a barchart instance
+func NewColoredStackChart(title string, ticks float64, labels []string, values []float64, fills []string, colors []AnsiColor) Chart {
+	lenLabels := len(labels)
+	lenValues := len(values)
+	lenFills := len(fills)
+	lenColors := len(colors)
+
+	if lenLabels != lenValues || lenLabels != lenFills || lenLabels != lenColors {
+		log.Fatalf("Needs same number of values : %d, labels : %d, fills : %d, colors : %d", lenValues, lenLabels, lenFills, lenColors)
 	}
 	return &stackChart{title: title, ticks: ticks, labels: labels, values: values, fills: fills, colors: colors}
 }
@@ -36,8 +49,4 @@ func (s stackChart) generateHorizontally() string {
 		legend += s.colors[i].String() + alignLeft(fmt.Sprintf("%s %s : %.1f", s.fills[i], s.labels[i], s.values[i]), " ", 3)
 	}
 	return title + duplicateHorizontal(chart, 2) + legend + White.String()
-}
-
-func (s stackChart) generateVertically() string {
-	return ""
 }
