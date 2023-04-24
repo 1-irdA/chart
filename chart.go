@@ -5,90 +5,77 @@ const (
 	Horizontal = 2
 )
 
+// Chart allow you to create a chart
 type Chart interface {
 	GetTick() float64
-	GetSeries() []Serie
+	GetSeries() []Series
 	Generate(int) string
 }
 
-type Serie interface {
+// Series is in chart
+type Series interface {
 	GetLabel() string
 	GetValue() float64
 	GetColor() string
 	GetFill() string
 }
 
-// barChart is just a barchart with
-// a title to describe it
-// a tick unit (ex: 0.5)
-// labels to describe values
-// values
-// fill bar with custom char
 type barChart struct {
 	title  string
 	tick   float64
-	series []Serie
+	series []Series
 }
 
-func (b barChart) GetSeries() []Serie {
-	return b.series
+func (bc barChart) GetSeries() []Series {
+	return bc.series
 }
 
-func (b barChart) GetTick() float64 {
-	return b.tick
+func (bc barChart) GetTick() float64 {
+	return bc.tick
 }
 
-// stackChart is just a stackChart with
-// a title to describe it
-// labels to describe values
-// values
-// fills to fill stack
 type stackChart struct {
 	title  string
 	tick   float64
-	series []Serie
+	series []Series
 }
 
-func (s stackChart) GetSeries() []Serie {
-	return s.series
+func (sc stackChart) GetSeries() []Series {
+	return sc.series
 }
 
-func (s stackChart) GetTick() float64 {
-	return s.tick
+func (sc stackChart) GetTick() float64 {
+	return sc.tick
 }
 
-// barSerie is just a chart series with
-// a label to describe it
-// a value
-// a color
-type serie struct {
+type series struct {
 	label, fill string
 	value       float64
 	color       AnsiColor
 }
 
-// NewSerie create a new bar serie
-func NewSerie(label, fill string, value float64) *serie {
-	return &serie{label, fill, value, White}
+// NewSeries create a new series
+func NewSeries(label, fill string, value float64) Series {
+	return &series{label, fill, value, White}
 }
 
-// NewColoredSerie create a new bar serie
-func NewColoredSerie(label, fill string, value float64, color AnsiColor) *serie {
-	return &serie{label, fill, value, color}
+// NewColoredSeries create a new colored series
+func NewColoredSeries(label, fill string, value float64, color AnsiColor) Series {
+	return &series{label, fill, value, color}
 }
 
-func (s serie) GetLabel() string {
+func (s series) GetLabel() string {
 	return s.label
 }
 
-func (s serie) GetValue() float64 {
+func (s series) GetValue() float64 {
 	return s.value
 }
 
-func (s serie) GetFill() string {
+func (s series) GetFill() string {
 	return s.fill
 }
 
-func (s serie) GetColor() string {
+func (s series) GetColor() string {
 	return s.color.String()
 }

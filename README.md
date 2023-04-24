@@ -14,10 +14,10 @@ import (
 )
 
 func main() {
-	series := []chart.Serie{
-		chart.NewColoredSerie("go", "=", 17, chart.Yellow),
-		chart.NewColoredSerie("cpp", "*", 14.95, chart.Red),
-		chart.NewColoredSerie("java", "+", 54.65, chart.Blue),
+	series := []chart.Series{
+		chart.NewColoredSeries("go", "=", 17, chart.Yellow),
+		chart.NewColoredSeries("cpp", "*", 14.95, chart.Red),
+		chart.NewColoredSeries("java", "+", 54.65, chart.Blue),
 	}
 	ch := chart.NewBarChart("Languages", 5, series)
 	result := ch.Generate(chart.Vertical)
@@ -68,10 +68,10 @@ import (
 )
 
 func main() {
-	series := []chart.Serie{
-		chart.NewColoredSerie("go", "=", 17, chart.Yellow),
-		chart.NewColoredSerie("cpp", "*", 14.95, chart.Red),
-		chart.NewColoredSerie("java", "+", 54.65, chart.Blue),
+	series := []chart.Series{
+		chart.NewColoredSeries("go", "=", 17, chart.Yellow),
+		chart.NewColoredSeries("cpp", "*", 14.95, chart.Red),
+		chart.NewColoredSeries("java", "+", 54.65, chart.Blue),
 	}
 	ch := chart.NewStackChart("Languages", 2, series)
 	result := ch.Generate(chart.Horizontal)

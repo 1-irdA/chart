@@ -4,12 +4,12 @@ import (
 	"testing"
 )
 
-var series []Serie = []Serie{
-	NewSerie("go", "=", 25.0),
-	NewSerie("cpp", "=", 10.0),
-	NewSerie("java", "=", 2.0),
-	NewSerie("ts", "=", 30.5),
-	NewSerie("c#", "=", 0.5),
+var testSeries = []Series{
+	NewSeries("go", "=", 25.0),
+	NewSeries("cpp", "=", 10.0),
+	NewSeries("java", "=", 2.0),
+	NewSeries("ts", "=", 30.5),
+	NewSeries("c#", "=", 0.5),
 }
 
 func TestCenter(t *testing.T) {
@@ -21,8 +21,8 @@ func TestCenter(t *testing.T) {
 	}
 }
 
-func TestAlignLeft(t *testing.T) {
-	got := alignLeft("Test", "-", 4)
+func TestLeft(t *testing.T) {
+	got := left("Test", "-", 4)
 	want := "Test----"
 
 	if got != want {
@@ -30,8 +30,8 @@ func TestAlignLeft(t *testing.T) {
 	}
 }
 
-func TestAlignRight(t *testing.T) {
-	got := alignRight("Test", "*", 4)
+func TestRight(t *testing.T) {
+	got := right("Test", "*", 4)
 	want := "****Test"
 
 	if got != want {
@@ -39,8 +39,8 @@ func TestAlignRight(t *testing.T) {
 	}
 }
 
-func TestAjustLeft(t *testing.T) {
-	got := ajustLeft("Test", "-", 10)
+func TestAlignLeft(t *testing.T) {
+	got := alignLeft("Test", "-", 10)
 	want := "Test------"
 
 	if got != want {
@@ -48,8 +48,8 @@ func TestAjustLeft(t *testing.T) {
 	}
 }
 
-func TestAjustLeftSmaller(t *testing.T) {
-	got := ajustLeft("Test", "-", 1)
+func TestAlignLeftSmaller(t *testing.T) {
+	got := alignLeft("Test", "-", 1)
 	want := "Test"
 
 	if got != want {
@@ -57,8 +57,8 @@ func TestAjustLeftSmaller(t *testing.T) {
 	}
 }
 
-func TestAjustRight(t *testing.T) {
-	got := ajustRight("Test", "/", 10)
+func TestAlignRight(t *testing.T) {
+	got := alignRight("Test", "/", 10)
 	want := "//////Test"
 
 	if got != want {
@@ -66,8 +66,8 @@ func TestAjustRight(t *testing.T) {
 	}
 }
 
-func TestAjustRightSmaller(t *testing.T) {
-	got := ajustRight("Test", "/", 3)
+func TestAlignRightSmaller(t *testing.T) {
+	got := alignRight("Test", "/", 3)
 	want := "Test"
 
 	if got != want {
@@ -75,8 +75,8 @@ func TestAjustRightSmaller(t *testing.T) {
 	}
 }
 
-func TestFindLonguest(t *testing.T) {
-	got := findLonguest(series)
+func TestFindLongest(t *testing.T) {
+	got := findLongest(testSeries)
 	want := 4
 
 	if got != want {
@@ -85,7 +85,7 @@ func TestFindLonguest(t *testing.T) {
 }
 
 func TestFindMax(t *testing.T) {
-	got := findMax(series)
+	got := findMax(testSeries)
 	want := 30.5
 
 	if got != want {

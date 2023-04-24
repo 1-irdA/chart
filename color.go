@@ -296,9 +296,6 @@ func (c AnsiColor) String() string {
 	if c == Default {
 		return "\x1b[0m"
 	}
-	if c == Black {
-		c = 0
-	}
 	if c <= Silver {
 		// 3-bit color
 		return fmt.Sprintf("\x1b[%dm", 30+byte(c))

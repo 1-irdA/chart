@@ -7,32 +7,32 @@ import (
 )
 
 // NewBarChart Create a barchart instance
-func NewBarChart(title string, tick float64, series []Serie) Chart {
+func NewBarChart(title string, tick float64, series []Series) Chart {
 	return &barChart{title, tick, series}
 }
 
 // Generate generate horizontal or vertical cli barchart
-func (b barChart) Generate(chartType int) string {
+func (bc barChart) Generate(chartType int) string {
 	if chartType == Vertical {
-		return b.generateVertically()
+		return bc.generateVertically()
 	}
-	return b.generateHorizontally()
+	return bc.generateHorizontally()
 }
 
-func (b barChart) generateVertically() string {
-	var title = center(b.title, " ", len(b.series)*2) + strings.Repeat("\n", 2)
+func (bc barChart) generateVertically() string {
+	var title = center(bc.title, " ", len(bc.series)*2) + strings.Repeat("\n", 2)
 	var chart, row string
-	var max = findMax(b.series)
+	var max = findMax(bc.series)
 
-	for i := (math.Round(max/b.GetTick()) * b.GetTick()); i > 0.0; i -= b.GetTick() {
+	for i := math.Round(max/bc.GetTick()) * bc.GetTick(); i > 0.0; i -= bc.GetTick() {
 
 		// add ticks
-		row = White.String() + ajustRight(fmt.Sprintf("%.2f| ", i), " ", 8)
+		row = White.String() + alignRight(fmt.Sprintf("%.2f| ", i), " ", 8)
 
 		// fill for each
-		for _, serie := range b.series {
-			if serie.GetValue() >= i {
-				row += serie.GetColor() + alignLeft(serie.GetFill(), " ", 2)
+		for _, s := range bc.series {
+			if s.GetValue() >= i {
+				row += s.GetColor() + alignLeft(s.GetFill(), " ", 2)
 			} else {
 				row += alignLeft("", " ", 3)
 			}
@@ -40,19 +40,19 @@ func (b barChart) generateVertically() string {
 		chart += row + "\n"
 	}
 
-	row = White.String() + alignLeft("-", "---", len(b.series))
+	row = White.String() + alignLeft("-", "---", len(bc.series))
 	chart += alignRight(row, " ", 6)
-	var longestName = findLonguest(b.series)
+	var longestName = findLongest(bc.series)
 
 	for i := 0; i < longestName; i++ {
 		row = alignLeft("\n", " ", 8)
 
 		// add label vertically
-		for _, serie := range b.series {
-			name := serie.GetLabel()
+		for _, s := range bc.series {
+			name := s.GetLabel()
 
 			if i < len(name) {
-				row += serie.GetColor() + alignLeft(string(name[i]), " ", 2)
+				row += s.GetColor() + alignLeft(string(name[i]), " ", 2)
 			} else {
 				row += alignLeft("", " ", 3)
 			}
@@ -62,16 +62,16 @@ func (b barChart) generateVertically() string {
 	return title + chart + White.String()
 }
 
-func (b barChart) generateHorizontally() string {
-	var title = center(b.title, " ", len(b.series)*2) + strings.Repeat("\n", 2)
-	var longestName = findLonguest(b.series)
-	var max = findMax(b.series)
+func (bc barChart) generateHorizontally() string {
+	var title = center(bc.title, " ", len(bc.series)*2) + strings.Repeat("\n", 2)
+	var longestName = findLongest(bc.series)
+	var max = findMax(bc.series)
 	var chart, row string
 
-	for _, serie := range b.series {
-		row = strings.Repeat(serie.GetFill(), int(serie.GetValue()/b.GetTick()))
-		chart += serie.GetColor() + ajustLeft(serie.GetLabel(), " ", longestName) + " | "
-		chart += ajustLeft(row, " ", longestName+2+int(max/b.GetTick())) + fmt.Sprintf("%.2f\n", serie.GetValue())
+	for _, s := range bc.series {
+		row = strings.Repeat(s.GetFill(), int(s.GetValue()/bc.GetTick()))
+		chart += s.GetColor() + alignLeft(s.GetLabel(), " ", longestName) + " | "
+		chart += alignLeft(row, " ", longestName+2+int(max/bc.GetTick())) + fmt.Sprintf("%.2f\n", s.GetValue())
 	}
 	return title + chart + White.String()
 }
