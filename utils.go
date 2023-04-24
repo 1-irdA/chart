@@ -3,10 +3,10 @@ package chart
 import "strings"
 
 // findLonguest find longuest labels to make a good indendation
-func findLonguest(labels []string) int {
+func findLonguest(series []Serie) int {
 	var longuest int
-	for _, label := range labels {
-		l := len(label)
+	for _, serie := range series {
+		l := len(serie.GetLabel())
 		if l > longuest {
 			longuest = l
 		}
@@ -15,11 +15,11 @@ func findLonguest(labels []string) int {
 }
 
 // findMax find the biggest number
-func findMax(values []float64) float64 {
+func findMax(series []Serie) float64 {
 	var max float64
-	for _, value := range values {
-		if value > max {
-			max = value
+	for _, serie := range series {
+		if serie.GetValue() > max {
+			max = serie.GetValue()
 		}
 	}
 	return max
@@ -68,24 +68,4 @@ func ajustRight(s string, fill string, n int) string {
 		return alignRight(s, fill, n-sLen)
 	}
 	return s
-}
-
-// duplicateHorizontal duplicate string s horizontaly n times
-// ex: "Test", 3
-// output: Test\nTest\nTest\n
-func duplicateHorizontal(s string, n int) string {
-	if n == 0 {
-		return s
-	}
-	return s + "\n" + duplicateHorizontal(s, n-1)
-}
-
-// sum return the sum of the array
-func sum(arr []float64) float64 {
-	var sum float64
-
-	for _, v := range arr {
-		sum += v
-	}
-	return sum
 }

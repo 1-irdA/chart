@@ -2,33 +2,12 @@ package chart
 
 import (
 	"fmt"
-	"log"
 	"strings"
 )
 
 // NewStackChart Create a barchart instance
-func NewStackChart(title string, ticks float64, labels []string, values []float64, fills []string) Chart {
-	lenLabels := len(labels)
-	lenValues := len(values)
-	lenFills := len(fills)
-
-	if lenLabels != lenValues || lenLabels != lenFills {
-		log.Fatalf("Needs same number of values : %d, labels : %d, fills : %d", lenValues, lenLabels, lenFills)
-	}
-	return &stackChart{title: title, ticks: ticks, labels: labels, values: values, fills: fills, colors: make([]AnsiColor, lenFills)}
-}
-
-// NewColoredStackChart Create a barchart instance
-func NewColoredStackChart(title string, ticks float64, labels []string, values []float64, fills []string, colors []AnsiColor) Chart {
-	lenLabels := len(labels)
-	lenValues := len(values)
-	lenFills := len(fills)
-	lenColors := len(colors)
-
-	if lenLabels != lenValues || lenLabels != lenFills || lenLabels != lenColors {
-		log.Fatalf("Needs same number of values : %d, labels : %d, fills : %d, colors : %d", lenValues, lenLabels, lenFills, lenColors)
-	}
-	return &stackChart{title: title, ticks: ticks, labels: labels, values: values, fills: fills, colors: colors}
+func NewStackChart(title string, tick float64, series []Serie) Chart {
+	return &stackChart{title, tick, series}
 }
 
 // Generate generate horizontal or vertical cli barchart
@@ -37,16 +16,15 @@ func (s stackChart) Generate(chartType int) string {
 }
 
 func (s stackChart) generateHorizontally() string {
-	var size int = len(s.labels)
-	var title = center(s.title, " ", size*2) + strings.Repeat("\n", 2)
-	var chart string
-	var legend = strings.Repeat("\n", 2)
+	var size int = len(s.series)
+	var title = White.String() + center(s.title, " ", size*2) + strings.Repeat("\n", 2)
+	var legend, chart string
 
-	for i := 0; i < size; i++ {
-		chart += s.colors[i].String() + strings.Repeat(s.fills[i], int(s.values[i]/s.ticks))
+	for _, serie := range s.series {
+		chart += serie.GetColor() + strings.Repeat(serie.GetFill(), int(serie.GetValue()/s.GetTick()))
 	}
-	for i := 0; i < size; i++ {
-		legend += s.colors[i].String() + alignLeft(fmt.Sprintf("%s %s : %.1f", s.fills[i], s.labels[i], s.values[i]), " ", 3)
+	for _, serie := range s.series {
+		legend += serie.GetColor() + alignLeft(fmt.Sprintf("%s %s : %.1f", serie.GetFill(), serie.GetLabel(), serie.GetValue()), " ", 3)
 	}
-	return title + duplicateHorizontal(chart, 2) + legend + White.String()
+	return title + strings.Repeat(chart+"\n", 3) + "\n" + legend + White.String()
 }
