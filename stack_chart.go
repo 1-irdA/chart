@@ -43,7 +43,7 @@ func (s stackChart) generateHorizontally() string {
 	var legend = strings.Repeat("\n", 2)
 
 	for i := 0; i < size; i++ {
-		chart += s.colors[i].String() + strings.Repeat(s.fills[i], int(s.values[i]/s.ticks)) + s.colors[i].String()
+		chart += s.colors[i].String() + strings.Repeat(s.fills[i], int(s.values[i]/s.ticks))
 	}
 	for i := 0; i < size; i++ {
 		legend += s.colors[i].String() + alignLeft(fmt.Sprintf("%s %s : %.1f", s.fills[i], s.labels[i], s.values[i]), " ", 3)
