@@ -24,7 +24,7 @@ func (sc stackChart) generateHorizontally() string {
 		chart += s.GetColor() + strings.Repeat(s.GetFill(), int(s.GetValue()/sc.GetTick()))
 	}
 	for _, s := range sc.series {
-		legend += s.GetColor() + alignLeft(fmt.Sprintf("%s %s : %.1f", s.GetFill(), s.GetLabel(), s.GetValue()), " ", 3)
+		legend += s.GetColor() + left(fmt.Sprintf("%s %s : %.1f", s.GetFill(), s.GetLabel(), s.GetValue()), " ", 3)
 	}
 	return title + strings.Repeat(chart+"\n", 3) + "\n" + legend + White.String()
 }

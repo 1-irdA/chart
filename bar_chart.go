@@ -32,29 +32,29 @@ func (bc barChart) generateVertically() string {
 		// fill for each
 		for _, s := range bc.series {
 			if s.GetValue() >= i {
-				row += s.GetColor() + alignLeft(s.GetFill(), " ", 2)
+				row += s.GetColor() + left(s.GetFill(), " ", 2)
 			} else {
-				row += alignLeft("", " ", 3)
+				row += left("", " ", 3)
 			}
 		}
 		chart += row + "\n"
 	}
 
-	row = White.String() + alignLeft("-", "---", len(bc.series))
-	chart += alignRight(row, " ", 6)
+	row = White.String() + left("-", "---", len(bc.series))
+	chart += right(row, " ", 6)
 	var longestName = findLongest(bc.series)
 
 	for i := 0; i < longestName; i++ {
-		row = alignLeft("\n", " ", 8)
+		row = left("\n", " ", 8)
 
 		// add label vertically
 		for _, s := range bc.series {
 			name := s.GetLabel()
 
 			if i < len(name) {
-				row += s.GetColor() + alignLeft(string(name[i]), " ", 2)
+				row += s.GetColor() + left(string(name[i]), " ", 2)
 			} else {
-				row += alignLeft("", " ", 3)
+				row += left("", " ", 3)
 			}
 		}
 		chart += row
